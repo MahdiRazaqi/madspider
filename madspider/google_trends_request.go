@@ -1,4 +1,4 @@
-package main
+package madspider
 
 import (
 	"encoding/json"
@@ -16,7 +16,8 @@ const (
 	dataURL = "https://trends.google.com/trends/api/widgetdata/relatedsearches"
 )
 
-func getToken(country string) {
+// GetToken from google trends
+func GetToken(country string) {
 	resp, err := request(authURL, queryParams{
 		"hl":  "en-US",
 		"tz":  "-270",
@@ -37,7 +38,8 @@ func getToken(country string) {
 	}
 }
 
-func getCountryTrends(country string) {
+// GetCountryTrends get all trends on country
+func GetCountryTrends(country string) {
 	response := map[string]trendsResp{}
 	for _, r := range authData.Widgets {
 		resp, err := request(dataURL, queryParams{
@@ -92,11 +94,11 @@ func getCountryTrends(country string) {
 		logrus.Error(err)
 	}
 
-	if err := ioutil.WriteFile("exports/"+countryList[country]+".json", jsonData, 0644); err != nil {
+	if err := ioutil.WriteFile("exports/"+CountryList[country]+".json", jsonData, 0644); err != nil {
 		logrus.Error(err)
 	}
 }
 
 func urlEncoding(country, keywordType string) string {
-	return "{%22restriction%22:{%22geo%22:{%22country%22:%22" + country + "%22},%22time%22:%222019-07-10%202020-07-10%22,%22originalTimeRangeForExploreUrl%22:%22today%2012-m%22},%22keywordType%22:%22" + keywordType + "%22,%22metric%22:[%22TOP%22,%22RISING%22],%22trendinessSettings%22:{%22compareTime%22:%222018-07-08%202019-07-09%22},%22requestOptions%22:{%22property%22:%22%22,%22backend%22:%22IZG%22,%22category%22:0},%22language%22:%22en%22,%22userCountryCode%22:%22US%22}"
+	return "{%22restriction%22:{%22geo%22:{%22country%22:%22" + country + "%22},%22time%22:%222019-07-17+2020-07-17%22,%22originalTimeRangeForExploreUrl%22:%22today+12-m%22},%22keywordType%22:%22" + keywordType + "%22,%22metric%22:%5B%22TOP%22,%22RISING%22%5D,%22trendinessSettings%22:{%22compareTime%22:%222018-07-15+2019-07-16%22},%22requestOptions%22:{%22property%22:%22%22,%22backend%22:%22IZG%22,%22category%22:0},%22language%22:%22en%22,%22userCountryCode%22:%22US%22}"
 }

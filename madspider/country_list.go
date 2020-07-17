@@ -1,6 +1,7 @@
-package main
+package madspider
 
-var countryList = map[string]string{
+// CountryList list all country name
+var CountryList = map[string]string{
 	"AF": "Afghanistan",
 	"AX": "Åland Islands",
 	"AL": "Albania",

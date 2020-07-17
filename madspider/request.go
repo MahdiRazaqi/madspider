@@ -1,4 +1,4 @@
-package main
+package madspider
 
 import (
 	"net/http"

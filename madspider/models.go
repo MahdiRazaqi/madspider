@@ -1,4 +1,4 @@
-package main
+package madspider
 
 type auth struct {
 	Widgets []struct {

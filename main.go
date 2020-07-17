@@ -1,8 +1,10 @@
 package main
 
+import "github.com/MahdiRazaqi/madspider/madspider"
+
 func main() {
-	for countryCode := range countryList {
-		getToken(countryCode)
-		getCountryTrends(countryCode)
+	for countryCode := range madspider.CountryList {
+		madspider.GetToken(countryCode)
+		madspider.GetCountryTrends(countryCode)
 	}
 }
